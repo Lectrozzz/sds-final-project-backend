@@ -1,5 +1,6 @@
-<h1> Brief API docs for Amongpop leaderboard </h1>
+<h1> Brief information for Amongpop leaderboard </h1>
 
+<h2> 1. API docs </h2>
 **GET** /api/users
 <br>
 // get leaderboard
@@ -27,3 +28,13 @@
 `response = { "name": "abc", "score": 69 }`
 <br>
 ถ้าเป็นusernameใหม่จะสร้างข้อมูลใหม่ในdb ถ้ามีusernameอยู่แล้วจะเขียนข้อมูลทับลงไป 
+
+<h2> 2. Running on docker </h2>
+
+**Docker build**
+<br>
+`docker build -t <image-name>:<tag> .`
+
+**Docker run (with .env file)**
+<br>
+`docker run -d -p 3000:3000 --env-file .env <image-name>:<tag>`
