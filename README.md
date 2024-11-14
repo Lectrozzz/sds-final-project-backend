@@ -38,3 +38,15 @@
 **Docker run (with .env file)**
 <br>
 `docker run -d -p 3000:3000 --env-file .env <image-name>:<tag>`
+
+<h2>3. Build docker image on multiple platform</h2>
+<p>We got several device running on a different architecture so we're going to build an image that supports multiple architecture.</p>
+
+
+**Docker buildx for amd64, armv7 and armv8 then push to dockerhub**
+<br>
+`docker buildx build --platform linux/amd64,linux/arm/v7,linux/arm64/v8 -t <username>/<image-name>:<tag> --push . `
+
+**If you got ERROR: Multi-platform build is not supported for the docker driver. Run this first and build the image again.**
+<br>
+`docker buildx create --use desktop-linux`
