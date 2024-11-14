@@ -19,7 +19,25 @@ const app = express();
 const port = process.env.PORT || 3000;
 await connectDB();
 
+// CORS
+const cors = require("cors");
+app.use(cors());
+
+// Helmet
+const helmet = require("helmet");
+app.use(helmet());
+
+// Body parser
 app.use(express.json());
+
+// Mongo Sanitize
+app.use(mongoSanitize());
+
+// Http Parameter Pollution
+app.use(hpp());
+
+// XSS Sanitizer
+app.use(xss());
 
 import { getLeaderboard, checkUserExist, updateUserScore } from './controller.js';
 // TODO: get all leaderboard, create new leaderboard on user, check user exist
