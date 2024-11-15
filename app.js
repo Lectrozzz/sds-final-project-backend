@@ -1,6 +1,9 @@
 import express from 'express';
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
+import cors from 'cors';
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize';
 
 dotenv.config();
 
@@ -20,11 +23,9 @@ const port = process.env.PORT || 3000;
 await connectDB();
 
 // CORS
-const cors = require("cors");
 app.use(cors());
 
 // Helmet
-const helmet = require("helmet");
 app.use(helmet());
 
 // Body parser
@@ -32,12 +33,6 @@ app.use(express.json());
 
 // Mongo Sanitize
 app.use(mongoSanitize());
-
-// Http Parameter Pollution
-app.use(hpp());
-
-// XSS Sanitizer
-app.use(xss());
 
 import { getLeaderboard, checkUserExist, updateUserScore } from './controller.js';
 // TODO: get all leaderboard, create new leaderboard on user, check user exist
